@@ -1,0 +1,12 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: "This is my first bucket!!"
+Resources:
+  UzoS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties: 
+      BucketName:
+        Ref: Name
+Parameters:
+  Name:
+    Type: String
+    Description: "Best QB in the NFL"

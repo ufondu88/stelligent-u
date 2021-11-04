@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: "Multi resource stack"
+Resources:
+  User:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: !Ref Name
+
+  Policy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: UserPolicy
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - "s3:Read"
+            Resource: "*"
+      Users:
+        - !Ref Name
+
+Parameters:
+  Name:
+    Type: String
+    Description: "Name of the user"
