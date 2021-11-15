@@ -5,20 +5,15 @@ Resources:
     Type: AWS::IAM::User
     Properties:
       UserName: !Ref Name
-
-  Policy:
-    Type: AWS::IAM::Policy
-    Properties:
-      PolicyName: UserPolicy
-      PolicyDocument:
-        Version: "2012-10-17"
-        Statement:
-          - Effect: Allow
-            Action:
-              - "s3:Read"
-            Resource: "*"
-      Users:
-        - !Ref Name
+      Policies:
+      - PolicyName: stack6UserPolicy
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Action:
+                - "s3:Read"
+              Resource: "*"
 
 Parameters:
   Name:

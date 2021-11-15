@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  UbuntuTemplate:
+    Type: 'AWS::EC2::LaunchTemplate'
+    Properties:
+      LaunchTemplateName: !Sub '${AWS::StackName}-Ubuntu'
+      LaunchTemplateData:
+        Placement:
+          Tenancy: dedicated
+        ImageId: !Join ["-", ["ami", !Ref ubuntuami]]
+        InstanceType: t2.micro
+  WindowsTemplate:
+    Type: 'AWS::EC2::LaunchTemplate'
+    Properties:
+      LaunchTemplateName: !Sub '${AWS::StackName}-Windows'
+      LaunchTemplateData:
+        Placement:
+          Tenancy: dedicated
+        ImageId: !Join ["-", ["ami", !Ref windowsami]]
+        InstanceType: t2.micro
+Parameters:
+  windowsami:
+    Type: String
+    Description: "Windows AMI"
+  ubuntuami:
+    Type: String
+    Description: "Ubuntu AMI"
