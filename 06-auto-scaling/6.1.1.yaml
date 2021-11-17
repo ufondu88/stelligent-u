@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  DebianTemplate:
+    Type: 'AWS::EC2::LaunchTemplate'
+    Properties:
+      LaunchTemplateName: !Sub '${AWS::StackName}-Debian'
+      LaunchTemplateData:
+        Placement:
+          Tenancy: dedicated
+        ImageId: ami-0c7ea5497c02abcaf
+        InstanceType: t2.micro
+  ASG:
+    Type: 'AWS::AutoScaling::AutoScalingGroup'
+    Properties:
+      MinSize: '0'
+      MaxSize: '1'
+      DesiredCapacity: '1'
+      LaunchTemplate:
+        LaunchTemplateId: !Ref DebianTemplate
